@@ -1,0 +1,79 @@
+{% include 'header.html' %}
+        <!-- Page Header-->
+        <header class="masthead" style="background-image:url('https://images.unsplash.com/photo-1470092306007-055b6797ca72?ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80')">
+            <div class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="site-heading">
+                            <h1>Kartik's Blogs</h1>
+                            <span class="subheading">The best blog website available</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content-->
+        <main class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="my-5">
+                            {%if blog%}
+                            <form action="/updateblog{{blog['id']}}" method="post">
+                                <div class="mb-3">
+                                
+                                <label for="exampleFormControlInput1" class="form-label">Blog Title</label>
+                                <input type="text" class="form-control" name="title" id="exampleFormControlInput1" value="{{blog.title}}" placeholder="Your blog title">
+                                </div>
+                                <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Blog Subtitle</label>
+                                <input type="text" name="subtitle" class="form-control" id="exampleFormControlInput1" value="{{blog.subtitle}}" placeholder="Your blog sub-title">
+                                </div>
+                                <div class="mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label">Body</label>
+                                <textarea class="form-control" name="body" id="exampleFormControlTextarea1" rows="100"  placeholder="Start...">{{blog.body}}</textarea>
+                                </div>  
+                                <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Image Url</label>
+                                <input type="text" name="image_url" class="form-control" id="exampleFormControlInput1" value={{blog.image_url}} placeholder="Enter an image url">
+                                </div>
+                                <div class="mb-3">
+                                    <button type="submit" class="btn btn-primary mb-3">Edit</button>
+                                </div>
+                                 </form>
+                                
+                                {%else%}
+                                 <form action="/addnewblog" method="post">
+                                <label for="exampleFormControlInput1" class="form-label">Blog Title</label>
+                                <input type="text" class="form-control" name="title" id="exampleFormControlInput1"  placeholder="Your blog title">
+                                </div>
+                                <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Blog Subtitle</label>
+                                <input type="text" name="subtitle" class="form-control" id="exampleFormControlInput1" placeholder="Your blog sub-title">
+                                </div>
+                                <div class="mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label">Body</label>
+                                <textarea class="form-control" name="body" id="exampleFormControlTextarea1" rows="100" placeholder="Start..."></textarea>
+                                </div>  
+                                <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Image Url</label>
+                                <input type="text" name="image_url" class="form-control" id="exampleFormControlInput1" placeholder="Enter an image url">
+                                </div>
+                                <div class="mb-3">
+                                    <button type="submit" class="btn btn-primary mb-3">Post</button>
+                                </div>
+                            </form>
+                                {%endif%}
+                                
+                               
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+
+
+    {% include 'footer.html' %}
