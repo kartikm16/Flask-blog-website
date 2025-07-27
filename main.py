@@ -89,6 +89,7 @@ def login():
     nonce = secrets.token_urlsafe(16)   # generate a secure nonce
     session['nonce'] = nonce            # store it in session
     redirect_uri = url_for('auth', _external=True)
+    print("Redirect URI:", redirect_uri)
     return google.authorize_redirect(redirect_uri, nonce=nonce)
 
 @app.route('/auth')
