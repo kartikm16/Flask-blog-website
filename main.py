@@ -24,7 +24,7 @@ class MyForm(FlaskForm):
 
 
 app=Flask(__name__)
-app.secret_key = 'lmst118b'
+app.secret_key = os.getenv("secret_key")
 blogs=requests.get("https://68824e3c66a7eb81224e2dae.mockapi.io/blogposts").json()
 
 
