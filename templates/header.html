@@ -29,7 +29,7 @@
                  <a class="navbar-brand" href="/">Hello {{username}}, </a>
                  {%endif%} -->
                  <a href='/' class="navbar-brand"><img height="50vh" width="50vh" src="../static/assets/img/logo_img.png" alt="logo_img"></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
                 </button>
@@ -40,29 +40,31 @@
                         <!-- <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="post.html">Sample Post</a></li> -->
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/contact">Contact</a></li>
                         <li class="nav-item" ><a class="nav-link px-lg-3 py-1 py-lg-2 my-3" style="background-color: white;color: black;border-radius: 5%;"  href="/new">+Post</a></li>
-                        <li class="nav-item" >
+                        <li class="nav-item dropdown">
                              {% if username == ""%}
-                             <li class="nav-item" ><a class="nav-link px-lg-3 py-1 py-lg-2 my-3 mx-3" style="border:1px solid white;"  href="/new">Log in</a></li>
+                             <a class="nav-link px-lg-3 py-1 pt-lg-2 mt-3 mx-3" style="border:1px solid white;"  href="/new">Log in</a></li>
                             {%else%}
-                             <div class="dropdown show nav-link  px-lg-3 py-3 py-lg-3" >
-                             <a class="btn  dropdown-toggle  " style="color:white;" href="/" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                
+                        
+                             <div class="dropdown show px-lg-3 py-3 py-lg-4" >
+                            
+                             <a class=" dropdown-toggle  username-display " style="padding-top: 1rem;" href="/" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {{username}}
-                               
                             </a>
+                            
                              {%endif%}
 
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 
                                 
                                  {% if username == ""%}
-                                 <a class="dropdown-item" href="/login">Login</a>
+                                 <a class="dropdown-item nav-link" href="/login">Login</a>
                                  {%else%}
-                                  <a class="dropdown-item" href="/myposts">My blogs</a>
-                                  <a class="dropdown-item" href="/logout">Log out</a>
+                                  <a class="dropdown-item nav-link" href="/myposts">My blogs</a>
+                                  <a class="dropdown-item nav-link" href="/logout">Log out</a>
                                 {%endif%}
                             </div>
                         </div>
+                        
                         </li>
                     </ul>
                 </div>

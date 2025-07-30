@@ -49,7 +49,11 @@ def home():
 
 @app.route('/<int:id>')
 def post(id):
-    return render_template("post.html",post=blogs[id-1],username=session.get('user')['given_name'])
+    if session.get('user'):
+        return render_template("post.html",post=blogs[id-1],username=session.get('user')['given_name'])
+    else :
+      return render_template("post.html",post=blogs[id-1],username="")
+
 
 @app.route('/about')
 def about():
@@ -86,8 +90,8 @@ def new():
 
 @app.route('/login')
 def login():
-    nonce = secrets.token_urlsafe(16)   # generate a secure nonce
-    session['nonce'] = nonce            # store it in session
+    nonce = secrets.token_urlsafe(16)  
+    session['nonce'] = nonce           
     redirect_uri = url_for('auth', _external=True)
     print("Redirect URI:", redirect_uri)
     return google.authorize_redirect(redirect_uri, nonce=nonce)
@@ -97,7 +101,7 @@ def auth():
     token = google.authorize_access_token()
     nonce = session.pop('nonce', None)  # retrieve and remove from session
 
-    # ✅ Now parse ID token with nonce
+    # parse ID token with nonce
     userinfo = google.parse_id_token(token, nonce=nonce)
 
     session['user'] = userinfo
@@ -117,7 +121,7 @@ def addnewpost():
    "date":datetime.datetime.now().strftime("%d-%m-%Y")
    }
     requests.post("https://68824e3c66a7eb81224e2dae.mockapi.io/blogposts",json=data)
-    blogs=blogs=requests.get("https://68824e3c66a7eb81224e2dae.mockapi.io/blogposts").json()
+    blogs=requests.get("https://68824e3c66a7eb81224e2dae.mockapi.io/blogposts").json()
     return redirect(url_for("home"))
 
 @app.route("/myposts")
