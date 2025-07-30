@@ -16,6 +16,8 @@ client_secret=os.getenv("client_secret")
 client_id=os.getenv("client_id")
 sender_email=os.getenv("sender_email")
 password=os.getenv("password")
+secret_key=os.getenv("secret_key")
+print(client_id,client_secret,secret_key)
 class MyForm(FlaskForm):
     name = StringField('name', validators=[DataRequired()])
 
@@ -24,7 +26,7 @@ class MyForm(FlaskForm):
 
 
 app=Flask(__name__)
-app.secret_key = os.getenv("secret_key")
+app.secret_key = "lmst118b"
 blogs=requests.get("https://68824e3c66a7eb81224e2dae.mockapi.io/blogposts").json()
 
 
