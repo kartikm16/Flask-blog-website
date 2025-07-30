@@ -8,17 +8,20 @@ import datetime
 from flask_wtf import FlaskForm
 from wtforms import StringField
 from wtforms.validators import DataRequired
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
-# username="kartik100daysofcode@gmail.com"
-# password="nusczavbdbxklatv"
+client_secret=os.getenv("client_secret")
+client_id=os.getenv("client_id")
+sender_email=os.getenv("sender_email")
+password=os.getenv("password")
 class MyForm(FlaskForm):
     name = StringField('name', validators=[DataRequired()])
 
-client_secret="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"
-client_id="1006757279889-t9v3e473j4au4ul9bdduad4npl9a9e31.apps.googleusercontent.com"
 
-sender_email="mahamunikartik@gmail.com"
-password="jbuqzniwskfnnqev"
+
+
 
 app=Flask(__name__)
 app.secret_key = 'lmst118b'
