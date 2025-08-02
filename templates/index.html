@@ -14,21 +14,36 @@
         </header>
         <!-- Main Content-->
         <div class="container px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="row gx-1 gx-lg-2 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
                     {% for blog in blogs%}
                     <!-- Post preview-->
-                    <div class="post-preview">
-                        <a href="/{{blog['id']}}">
+                    
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    {%if blog.image_url==""%}
+                                       <a href="/{{blog['id']}}"><img src="../static/assets/img/no-img.jpg" height="80%" width="80%" alt="blog_images"></a>
+                                    {%else%}
+                                    <a href="/{{blog['id']}}"><img src="{{blog.image_url}}" height="80%" width="80%" alt="blog_images"></a>
+                                    {%endif%}
+                                </div>
+                                <div class="col">
+                                    <div class="post-preview" style="text-decoration: none;">
+                                    <a href="/{{blog['id']}}" >
 
-                            <h2 class="post-title">{{blogs.index(blog)+1}}.{{blog.title}}</h2>
-                            <h3 class="post-subtitle">{{blog.subtitle}}</h3>
-                        </a>
-                        <!-- <p class="post-meta">
-                            Posted by
-                            <a href="#!">Start Bootstrap</a>
-                            on September 24, 2023
-                        </p> -->
+                                        <h2 class="post-title" >{{blogs.index(blog)+1}}.{{blog.title}}</h2>
+                                         <p class="post-meta">
+                                            Posted by
+                                            {{blog.posted_by}}
+                                            on {{blog.date}}
+                                        </p>
+                                    </a>
+                                    </div>
+                                </div>
+                        </div>
+                    
+                        
                     </div>
                     <!-- Divider-->
                     <hr class="my-4" />

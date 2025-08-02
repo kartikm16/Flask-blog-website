@@ -17,9 +17,8 @@ client_id=os.getenv("client_id")
 sender_email=os.getenv("sender_email")
 password=os.getenv("password")
 secret_key=os.getenv("secret_key")
-print(client_id,client_secret,secret_key)
-class MyForm(FlaskForm):
-    name = StringField('name', validators=[DataRequired()])
+
+
 
 
 
@@ -27,12 +26,12 @@ class MyForm(FlaskForm):
 
 app=Flask(__name__)
 app.secret_key = "lmst118b"
-blogs=requests.get("https://68824e3c66a7eb81224e2dae.mockapi.io/blogposts").json()
+
 
 
 
 oauth = OAuth(app)
-
+blogs=requests.get("https://68824e3c66a7eb81224e2dae.mockapi.io/blogposts").json()
 
 google = oauth.register(
     name='google',
@@ -50,6 +49,7 @@ def home():
     username=""
     if user:
         username=user['given_name']
+    blogs=requests.get("https://68824e3c66a7eb81224e2dae.mockapi.io/blogposts").json()
     return render_template("index.html",blogs=blogs,username=username)
 
 @app.route('/<int:id>')
