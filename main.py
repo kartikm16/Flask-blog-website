@@ -10,6 +10,7 @@ from wtforms import StringField
 from wtforms.validators import DataRequired
 import os
 from dotenv import load_dotenv
+import markdown
 load_dotenv()
 
 client_secret=os.getenv("client_secret")
@@ -117,7 +118,7 @@ def addnewpost():
     global blogs
     data={
    "id":len(blogs),
-   "body":request.form["body"],
+   "body":markdown.markdown(request.form["body"]),
    "title":request.form["title"],
    "subtitle":request.form["subtitle"],
    "image_url":request.form["image_url"],
@@ -153,7 +154,7 @@ def update(id):
      global blogs
      data={
    "id":len(blogs),
-   "body":request.form["body"],
+   "body":markdown.markdown(request.form["body"]),
    "title":request.form["title"],
    "subtitle":request.form["subtitle"],
    "image_url":request.form["image_url"],
